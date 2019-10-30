@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+
+import { Nav, NavDropdown, MenuItem } from "react-bootstrap";
 
 class AdminNavbarLinks extends Component {
   render() {
@@ -11,7 +13,9 @@ class AdminNavbarLinks extends Component {
             title={<i class="fa fa-user"></i>}
             id="basic-nav-dropdown-right"
           >
-            <MenuItem eventKey={2.1}>Meu cadastro</MenuItem>
+            <MenuItem eventKey={2.1}>
+              <NavLink to="/admin/user">Meu cadastro</NavLink>
+            </MenuItem>
             <MenuItem eventKey={2.2}>Mensagens</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={2.5}>Sair</MenuItem>

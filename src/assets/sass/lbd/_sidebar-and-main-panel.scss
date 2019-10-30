@@ -265,3 +265,32 @@ body > .navbar-collapse{
     transition-timing-function: linear,linear;
     -webkit-overflow-scrolling: touch;
 }
+
+.login-background {
+    background: #EFEFEF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.login-panel {
+    background: #333333;
+    width: 500px;
+    padding: 40px;
+    color: #EFEFEF;
+    align-self: center;
+    border-radius: 10px;
+}
+
+.login-panel .logo {
+    text-align: center;
+}
+
+.login-panel .logo img {
+    width: 150px;
+    margin-bottom: 20px;
+}

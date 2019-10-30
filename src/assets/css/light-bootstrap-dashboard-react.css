@@ -434,6 +434,15 @@ body > .navbar-collapse[data-color="purple"]:after {
   background: linear-gradient(to bottom, #9368E9 0%, #943bea 100%);
   background-size: 150% 150%; }
 
+.login-backgorund {
+  background: #EFEFEF;
+}
+.login-panel {
+  background: rgba(203, 203, 210, 0.15);
+  width: 600px;
+  align-self: center;
+}
+
 .main-panel {
   background: rgba(203, 203, 210, 0.15);
   position: relative;
