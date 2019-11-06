@@ -45,7 +45,7 @@ class Register extends Component {
 
     console.log(this.state);
 
-    await api.post('/users', this.state);
+    await api.post('/users', this.state);//aguardando ajustes na api
     this.setState({loading: false});
   }
 
