@@ -1,5 +1,4 @@
 .table{
-
    .radio,
    .checkbox{
         position: relative;
@@ -56,5 +55,9 @@
                 @include opacity(1);
             }
         }
+    }
+
+    a.table-action {
+        font-size: 18px;
     }
 }

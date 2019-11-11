@@ -12,11 +12,13 @@ import "./assets/css/pe-icon-7-stroke.css";
 import AdminLayout from "layouts/Admin.jsx";
 import Login from "layouts/Login.jsx";
 
+let user = sessionStorage.getItem('user');
+
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/login" render={props => <Login {...props} />} />
-      <Redirect from="/" to="/login/access" />
+      <Route render={props => (user && user.token ? <Login {...props} /> : <AdminLayout {...props} />)} />
+      <Redirect from="/" to={user && user.token ? "/login/access" : "/admin/dashboard"} />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
