@@ -23,9 +23,9 @@ class Register extends Component {
     age: '',
     cpf: '',
     password: '',
-    confPassword: '',
+    confirmPassword: '',
     loading: false,
-    error: {}
+    error: ''
   };
 
   calculateAge = date => {
@@ -43,10 +43,14 @@ class Register extends Component {
   handleSend = async () => {
     this.setState({ loading: true });
 
-    console.log(this.state);
-
-    await api.post('/signup', this.state);//aguardando ajustes na api
-    this.setState({ loading: false });
+    try {
+      const res = await api.post('/signup', this.state);//aguardando ajustes na api
+      console.log(res);
+      this.setState({ loading: false });
+    } catch(error) {
+      console.log(error.response);
+      this.setState({ loading: false, error: error.response.data });
+    }
   }
 
   handleNameChange = evt => {
@@ -71,7 +75,7 @@ class Register extends Component {
     this.setState({ password: evt.target.value });
   }
   handleConfPasswordChange = evt => {
-    this.setState({ confPassword: evt.target.value });
+    this.setState({ confirmPassword: evt.target.value });
   }
 
   render() {

@@ -22,21 +22,21 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/pacientes",
+    path: "/pacientes/list",
     name: "Pacientes",
     icon: "pe-7s-users",
     component: UserProfile,
     layout: "/admin"
   },
   {
-    path: "/consultas",
+    path: "/consultas/list",
     name: "Consultas",
     icon: "pe-7s-clock",
     component: TableList,
     layout: "/admin"
   },
   {
-    path: "/exames",
+    path: "/exames/list",
     name: "Exames",
     icon: "pe-7s-like",
     component: Typography,

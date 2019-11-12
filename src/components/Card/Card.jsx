@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { NavLink } from "react-router-dom";
+
 export class Card extends Component {
   render() {
     return (
@@ -12,7 +14,7 @@ export class Card extends Component {
 
           {
             this.props.addBtn &&
-            <a href={this.props.addBtnLink} className="btn btn-success col-2 pull-right">+ Adicionar</a>
+            <NavLink to={this.props.addBtnLink} className="btn btn-success col-2 pull-right">+ Adicionar</NavLink>
           }
         </div>
         <div

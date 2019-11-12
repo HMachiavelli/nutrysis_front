@@ -1,21 +1,42 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import {
-  Grid,
-  Row,
-  Col,
-  FormGroup,
-  ControlLabel,
-  FormControl
-} from "react-bootstrap";
 
 import logo from "assets/img/reactlogo.png";
 
-import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
+import api from '../services/api';
+import session from '../services/session';
+
 class Access extends Component {
+  state = {
+    email: '',
+    password: '',
+    loading: false,
+    error: ''
+  };
+
+  handleSend = async () => {
+    this.setState({ loading:true });
+
+    const data = this.state;
+    
+    try {
+      const res = await api.post('/signin', data);
+
+      const user = res.data;
+
+      session.save('user', user);
+      
+      this.setState({ loading: false });
+
+      window.location.href = '/';
+    } catch(error) {
+      this.setState({ loading: false, error: error.response.data });
+    }
+  };
+
   render() {
     return (
       <div id="login-panel" className="login-panel content">
@@ -35,7 +56,8 @@ class Access extends Component {
                 type: "text",
                 bsClass: "form-control",
                 placeholder: "Usuário",
-                disabled: false
+                disabled: false,
+                onChange: input => {this.setState({email: input.target.value})}
               }
             ]}
           />
@@ -48,18 +70,21 @@ class Access extends Component {
                 type: "password",
                 bsClass: "form-control",
                 placeholder: "Senha",
-                disabled: false
+                disabled: false,
+                onChange: input => {this.setState({password: input.target.value})}
               }
             ]}
           />
 
+          <p className="error-login">{this.state.error}</p>
+
           <NavLink to={'/login/register'}>
-            <Button bsStyle="primary" pullLeft fill type="button">
+            <Button disabled={this.state.loading} bsStyle="primary" pullLeft fill type="button">
               Criar conta
             </Button>
           </NavLink>
-          <Button bsStyle="success" pullRight fill type="submit">
-            Entrar
+          <Button disabled={this.state.loading} bsStyle="success" pullRight fill type="button" onClick={this.handleSend}>
+            {this.state.loading ? 'Aguarde...' : 'Entrar'}
           </Button>
         </div>
     );

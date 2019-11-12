@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Grid, Row, Col, Table, Button } from "react-bootstrap";
 
+import { NavLink } from "react-router-dom";
+
 import Card from "components/Card/Card.jsx";
 
 class TableList extends Component {
@@ -35,7 +37,7 @@ class TableList extends Component {
                             })}
 
                             <td key="action">
-                              <a classList="table-action" href={this.props.path + "/edit/" + prop[0]}><i className="pe-7s-note" /></a>
+                              <NavLink classList="table-action" to={this.props.path + "/edit/" + prop[0]}><i className="pe-7s-note" /></NavLink>
                               <a classList="table-action" href="#" onClick={() => this.props.delAction(prop[0])}><i className="pe-7s-trash" /></a>
                             </td>
                           </tr>
