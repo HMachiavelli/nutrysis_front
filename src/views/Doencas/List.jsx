@@ -40,11 +40,8 @@ class Doencas extends Component {
     let tdArray = [];
 
     res.data.map((item, key) => {
-      let date = new Date(item.dateDiscovery);
-
-      console.log(date);
-      date = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
-      tdArray.push([(key+1), item.name, date]);
+      let date = new Date(item.dateDiscovery.split('T')[0]);
+      tdArray.push([item._id, item.name, date.toLocaleDateString('pt-BR')]);
     });
 
     const path = '/admin/doencas';

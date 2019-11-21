@@ -23,7 +23,7 @@ class Register extends Component {
     age: '',
     cpf: '',
     password: '',
-    confirmPassword: '',
+    confPassword: '',
     loading: false,
     error: ''
   };
@@ -45,8 +45,9 @@ class Register extends Component {
 
     try {
       const res = await api.post('/signup', this.state);//aguardando ajustes na api
-      console.log(res);
+      
       this.setState({ loading: false });
+      window.location.href = '/login/access';
     } catch(error) {
       console.log(error.response);
       this.setState({ loading: false, error: error.response.data });
@@ -75,7 +76,7 @@ class Register extends Component {
     this.setState({ password: evt.target.value });
   }
   handleConfPasswordChange = evt => {
-    this.setState({ confirmPassword: evt.target.value });
+    this.setState({ confPassword: evt.target.value });
   }
 
   render() {

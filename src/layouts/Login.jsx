@@ -4,6 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import Access from "views/Access";
 import Register from "views/Register";
 
+import session from 'services/session';
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +30,14 @@ class Login extends Component {
       );
     });
   };
+
+  componentDidMount() {
+    const user = session.load('user');
+
+    if(user && user.token) {
+      window.location.href = './admin/dashboard';
+    }
+  }
 
   componentDidUpdate(e) {
     if (
