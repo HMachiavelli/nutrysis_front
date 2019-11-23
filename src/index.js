@@ -16,8 +16,6 @@ import session from 'services/session';
 
 let user = session.load('user');
 
-console.log(user);
-
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
