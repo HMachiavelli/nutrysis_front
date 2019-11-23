@@ -6,11 +6,11 @@ import Swal from 'sweetalert2';
 
 import api from "../../services/api";
 
-class Doencas extends Component {
+class Usuarios extends Component {
   state = {
     head: [],
     list: [],
-    path: '/admin/doencas'
+    path: '/admin/usuarios'
   };
 
   delete = async (id) => {
@@ -25,7 +25,7 @@ class Doencas extends Component {
       if (confirm.value) {
         try {
           (async () => {
-            await api.delete('/diseases/' + id);
+            await api.delete('/users/' + id);
 
             this.loadData();
 
@@ -41,20 +41,19 @@ class Doencas extends Component {
   }
 
   loadData = async () => {
-    const res = await api.get('/diseases');
+    const res = await api.get('/users');
 
     let tdArray = [];
 
     res.data.map((item) => {
-      let date = new Date(item.dateDiscovery.split('T')[0]);
-      tdArray.push([item._id, item.name, date.toLocaleDateString('pt-BR')]);
+      tdArray.push([item._id, item.name, item.age]);
     });
 
     this.setState({ list: tdArray });
   }
 
   async componentDidMount() {
-    const thArray = ["Id", "Nome", "Data descoberta", "Ações"];
+    const thArray = ["Id", "Nome", "Idade", "Ações"];
 
     this.loadData();
 
@@ -65,9 +64,9 @@ class Doencas extends Component {
     const { head, list, path } = this.state;
 
     return (
-      <TableList addBtn={true} addBtnLink={path + "/add"} delAction={this.delete} title="Doenças" tdArray={list} thArray={head} path={path} />
+      <TableList delAction={this.delete} title="Usuarios" tdArray={list} thArray={head} path={path} />
     );
   }
 }
 
-export default Doencas;
+export default Usuarios;

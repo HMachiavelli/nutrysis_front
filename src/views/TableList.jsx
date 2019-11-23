@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Row, Col, Table, Button } from "react-bootstrap";
+import { Grid, Row, Col, Table, Button, ButtonToolbar } from "react-bootstrap";
 
 import { NavLink } from "react-router-dom";
 
@@ -19,6 +19,7 @@ class TableList extends Component {
                 addBtnLink={this.props.addBtnLink}
                 ctTableFullWidth
                 ctTableResponsive
+                ctTableUpgrade
                 content={
                   <Table striped hover>
                     <thead>
@@ -36,9 +37,20 @@ class TableList extends Component {
                               return <td key={key}>{prop}</td>;
                             })}
 
-                            <td key="action">
-                              <NavLink classList="table-action" to={this.props.path + "/edit/" + prop[0]}><i className="pe-7s-note" /></NavLink>
-                              <a classList="table-action" href="#" onClick={() => this.props.delAction(prop[0])}><i className="pe-7s-trash" /></a>
+                            <td key="action" width="190">
+                              <ButtonToolbar>
+                                <Button bsStyle="primary" bsSize="small">
+                                  <NavLink to={this.props.path + "/edit/" + prop[0]}>
+                                    Editar <i className="pe-7s-note" />
+                                  </NavLink>
+                                </Button>
+
+                                <Button bsStyle="primary" bsSize="small">
+                                  <a href="#" onClick={() => this.props.delAction(prop[0])}>
+                                    Excluir <i className="pe-7s-trash" />
+                                  </a>
+                                </Button>
+                              </ButtonToolbar>
                             </td>
                           </tr>
                         );

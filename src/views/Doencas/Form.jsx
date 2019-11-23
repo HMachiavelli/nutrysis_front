@@ -25,11 +25,11 @@ class Form extends Component {
   componentDidMount() {
     let pathArray = window.location.pathname.split('/');
 
-    const id = pathArray[pathArray.length-1];
+    const id = pathArray[pathArray.length - 1];
     if (id) {
       this.get(id);
     }
-  }
+  } 
 
   get = async id => {
     try {
@@ -46,7 +46,6 @@ class Form extends Component {
     } catch (e) {
       console.log(e.response);
     }
-
   }
 
   handleSend = async () => {
@@ -133,7 +132,7 @@ class Form extends Component {
                       </FormGroup>
                     </Col>
 
-                    <Button bsStyle="info" disabled={this.state.loading} pullRight fill type="button" onClick={this.handleSend}>
+                    <Button bsStyle="primary" disabled={this.state.loading} pullRight fill type="button" onClick={this.handleSend}>
                       {this.state.loading ? 'Aguarde...' : 'Salvar'}
                     </Button>
                     <div className="clearfix" />

@@ -4,13 +4,13 @@ import { Route, Switch } from "react-router-dom";
 import Form from "./Form.jsx";
 import List from "./List.jsx";
 
-class Doencas extends Component {
+class Usuarios extends Component {
   render() {
     return (
       <Switch>
         <Route
           exact
-          path="/admin/doencas"
+          path="/admin/usuarios"
           render={props => (
             <List
               {...props}
@@ -19,7 +19,7 @@ class Doencas extends Component {
           key="0"
         />
         <Route
-          path={`/admin/doencas/edit/:id`}
+          path={`/admin/usuarios/edit/:id`}
           render={props => (
             <Form
               {...props}
@@ -27,18 +27,9 @@ class Doencas extends Component {
           )}
           key="1"
         />
-        <Route
-          path="/admin/doencas/add"
-          render={props => (
-            <Form
-              {...props}
-            />
-          )}
-          key="2"
-        />
       </Switch>
     );
   }
 }
 
-export default Doencas;
+export default Usuarios;
