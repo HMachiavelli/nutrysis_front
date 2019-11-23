@@ -21,14 +21,14 @@ class Access extends Component {
     this.setState({ loading:true });
 
     const data = this.state;
-    
+
     try {
       const res = await api.post('/signin', data);
 
       const user = res.data;
 
       session.save('user', user);
-      
+
       this.setState({ loading: false });
 
       window.location.href = '/';
@@ -41,7 +41,7 @@ class Access extends Component {
     return (
       <div id="login-panel" className="login-panel content">
           <div className="logo">
-            <a href="https://www.creative-tim.com?ref=lbd-sidebar" className="simple-text logo-mini">
+            <a href="/login/access" className="simple-text logo-mini">
               <div className="logo-img">
                 <img src={logo} alt="logo_image" />
               </div>
@@ -79,7 +79,7 @@ class Access extends Component {
           <p className="error-login">{this.state.error}</p>
 
           <NavLink to={'/login/register'}>
-            <Button disabled={this.state.loading} bsStyle="primary" pullLeft fill type="button">
+            <Button disabled={this.state.loading} bsStyle="primary" fill type="button">
               Criar conta
             </Button>
           </NavLink>

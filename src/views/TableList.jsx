@@ -40,13 +40,13 @@ class TableList extends Component {
                             <td key="action" width="190">
                               <ButtonToolbar>
                                 <Button bsStyle="primary" bsSize="small">
-                                  <NavLink classList="table-action" to={this.props.path + "/edit/" + prop[0]}>
+                                  <NavLink to={this.props.path + "/edit/" + prop[0]}>
                                     Editar <i className="pe-7s-note" />
                                   </NavLink>
                                 </Button>
 
                                 <Button bsStyle="primary" bsSize="small">
-                                  <a classList="table-action" href="#" onClick={() => this.props.delAction(prop[0])}>
+                                  <a href="#" onClick={() => this.props.delAction(prop[0])}>
                                     Excluir <i className="pe-7s-trash" />
                                   </a>
                                 </Button>

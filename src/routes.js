@@ -1,8 +1,9 @@
 import Doencas from "views/Doencas/Doencas.jsx";
+import Pacientes from "views/Pacientes/Pacientes.jsx";
+import Usuarios from "views/Usuarios/Usuarios.jsx";
 
 //exemplos
 import Dashboard from "views/Dashboard.jsx";
-import UserProfile from "views/UserProfile.jsx";
 import TableList from "views/TableList.jsx";
 import Typography from "views/Typography.jsx";
 
@@ -22,10 +23,10 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/pacientes/list",
+    path: "/pacientes",
     name: "Pacientes",
     icon: "pe-7s-users",
-    component: UserProfile,
+    component: Pacientes,
     layout: "/admin"
   },
   {
@@ -41,7 +42,14 @@ const dashboardRoutes = [
     icon: "pe-7s-like",
     component: Typography,
     layout: "/admin"
-  }
+  },
+  {
+    path: "/usuarios",
+    name: "Usuarios",
+    icon: "pe-7s-users",
+    component: Usuarios,
+    layout: "/admin"
+  },
 ];
 
 export default dashboardRoutes;
