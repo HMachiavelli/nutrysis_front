@@ -1,5 +1,6 @@
 import Doencas from "views/Doencas/Doencas.jsx";
 import Pacientes from "views/Pacientes/Pacientes.jsx";
+import Consultas from "views/Consultas/Consultas.jsx";
 import Usuarios from "views/Usuarios/Usuarios.jsx";
 
 //exemplos
@@ -30,10 +31,10 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/consultas/list",
+    path: "/consultas",
     name: "Consultas",
     icon: "pe-7s-clock",
-    component: TableList,
+    component: Consultas,
     layout: "/admin"
   },
   {
