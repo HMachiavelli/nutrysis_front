@@ -1,22 +1,19 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
 
 import TableList from "../TableList.jsx";
-import Form from "./Form.jsx";
 
 import Swal from 'sweetalert2';
 
 import api from "../../services/api";
-import session from "../../services/session";
 
 class Doencas extends Component {
   state = {
     head: [],
     list: [],
-    path: ''
+    path: '/admin/doencas'
   };
 
-  delete = async () => {
+  delete = async (id) => {
     Swal.fire({
       title: 'Atenção!',
       text: 'Quando um registro é excluído, não é possível realizar a sua restauração no futuro. Tem certeza que deseja continuar?',
@@ -26,34 +23,49 @@ class Doencas extends Component {
       confirmButtonText: 'Sim'
     }).then(confirm => {
       if (confirm.value) {
-        Swal.fire('ok');
+        try {
+          (async () => {
+            await api.delete('/diseases/' + id);
+
+            this.loadData();
+
+            Swal.fire({
+              icon: 'success'
+            });
+          })();
+        } catch (e) {
+          console.log(e.response);
+        }
       }
     })
   }
 
-  async componentDidMount() {
+  loadData = async () => {
     const res = await api.get('/diseases');
 
-    console.log(res);
-
-    const thArray = ["ID", "Nome", "Data descoberta", "Ações"];
     let tdArray = [];
 
-    res.data.map((item, key) => {
+    res.data.map((item) => {
       let date = new Date(item.dateDiscovery.split('T')[0]);
       tdArray.push([item._id, item.name, date.toLocaleDateString('pt-BR')]);
     });
 
-    const path = '/admin/doencas';
+    this.setState({ list: tdArray });
+  }
 
-    this.setState({head: thArray, list: tdArray, path: path});
+  async componentDidMount() {
+    const thArray = ["Id", "Nome", "Data descoberta", "Ações"];
+
+    this.loadData();
+
+    this.setState({ head: thArray });
   }
 
   render() {
-    const {head, list, path} = this.state;
-  
+    const { head, list, path } = this.state;
+
     return (
-      <TableList addBtn={true} addBtnLink="/admin/doencas/add" delAction={this.delete} title="Doenças" tdArray={list} thArray={head} path={path} />
+      <TableList addBtn={true} addBtnLink={path + "/add"} delAction={this.delete} title="Doenças" tdArray={list} thArray={head} path={path} />
     );
   }
 }

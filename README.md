@@ -15,3 +15,7 @@ Faça o fork do repositório e navegue até ele
 ```npm start```
 
 Deve abrir o navegador em localhost:3000
+
+Atlas
+giwaxig308@exserver.top
+@1234qwer

@@ -16,7 +16,7 @@ const dashboardRoutes = [
   },
   {
     path: "/doencas",
-    name: "Doencas",
+    name: "Doenças",
     icon: "pe-7s-vector",
     component: Doencas,
     layout: "/admin"
