@@ -3,6 +3,8 @@ import { Route, Switch } from "react-router-dom";
 
 import Access from "views/Access";
 import Register from "views/Register";
+import Forgot from "views/Forgot";
+import Reset from "views/Reset";
 
 import session from 'services/session';
 
@@ -16,7 +18,7 @@ class Login extends Component {
   }
 
   getRoutes = () => {
-    return [{key: 'register', component: Register}, {key:'access', component: Access}].map((prop, key) => {
+    return [{key: 'register', component: Register}, {key:'forgot', component: Forgot}, {key:'access', component: Access}, {key:'reset', component: Reset}].map((prop, key) => {
       return (
         <Route
           path={'/login/' + prop.key}

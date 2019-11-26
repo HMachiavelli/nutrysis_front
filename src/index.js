@@ -20,7 +20,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route render={props => (user && user.token ? <AdminLayout {...props} /> : <Login {...props} />)} />
-      <Redirect from="/" to={user && user.token ? "/admin/dashboard" : "/login/access"} />
+      <Redirect from="/" to={(user && user.token ? "/admin/dashboard" : "/login/access")} />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

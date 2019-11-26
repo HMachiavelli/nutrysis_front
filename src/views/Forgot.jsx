@@ -16,8 +16,8 @@ import session from '../services/session';
 class Access extends Component {
   state = {
     email: '',
-    password: '',
     loading: false,
+    msgSuccess: '',
     error: ''
   };
 
@@ -27,15 +27,9 @@ class Access extends Component {
     const data = this.state;
 
     try {
-      const res = await api.post('/signin', data);
+      const res = await api.post('/forgot_password', {email: data.email});
 
-      const user = res.data;
-
-      session.save('user', user);
-
-      this.setState({ loading: false });
-
-      window.location.href = '/';
+      this.setState({loading: false, msgSuccess: 'Confira o seu e-mail para prosseguir', email: ''});
     } catch(error) {
       this.setState({ loading: false, error: error.response.data });
     }
@@ -56,51 +50,28 @@ class Access extends Component {
             ncols={["col-md-12"]}
             properties={[
               {
-                label: "Usuário",
+                label: "E-mail cadastrado",
                 type: "text",
                 bsClass: "form-control",
-                placeholder: "Usuário",
+                placeholder: "Seu e-mail cadastrado no sistema",
                 disabled: false,
                 onChange: input => {this.setState({email: input.target.value})}
               }
             ]}
           />
 
-          <FormInputs
-            ncols={["col-md-12"]}
-            properties={[
-              {
-                label: "Senha",
-                type: "password",
-                bsClass: "form-control",
-                placeholder: "Senha",
-                disabled: false,
-                onChange: input => {this.setState({password: input.target.value})}
-              }
-            ]}
-          />
-
           <p className="error-login">{this.state.error}</p>
-
-          <Row style={{marginBottom:15}}>
-            <Col md={12}>
-              <NavLink to={'/login/forgot'}>
-                <a>
-                  Esqueceu a senha?
-                </a>
-              </NavLink>
-            </Col>
-          </Row>
+          <p className="success-login">{this.state.msgSuccess}</p>
 
           <Row>
             <Col md={12}>
-              <NavLink to={'/login/register'}>
-                <Button disabled={this.state.loading} bsStyle="primary" fill type="button">
-                  Criar conta
+              <NavLink to={'/login/access'}>
+                <Button disabled={this.state.loading} bsStyle="default" fill type="button">
+                  Voltar
                 </Button>
               </NavLink>
               <Button disabled={this.state.loading} bsStyle="success" pullRight fill type="button" onClick={this.handleSend}>
-                {this.state.loading ? 'Aguarde...' : 'Entrar'}
+                {this.state.loading ? 'Aguarde...' : 'Recuperar senha'}
               </Button>
             </Col>
           </Row>
