@@ -19,9 +19,10 @@ let user = session.load('user');
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
+      <Redirect exact from="/" to={(user && user.token ? "/admin/dashboard" : "/login/access/")} />
       <Route render={props => (user && user.token ? <AdminLayout {...props} /> : <Login {...props} />)} />
-      <Redirect from="/" to={(user && user.token ? "/admin/dashboard" : "/login/access")} />
     </Switch>
+    
   </BrowserRouter>,
   document.getElementById("root")
 );

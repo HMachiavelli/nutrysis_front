@@ -166,7 +166,7 @@ class Form extends Component {
                     </Row>
 
                     <Button bsStyle="primary" pullRight fill type="submit" onClick={this.handleSend} disabled={this.state.loading}>
-                      Atualizar
+                      {this.state.loading ? 'Aguarde...' : 'Salvar'}
                     </Button>
                     <div className="clearfix" />
                   </form>

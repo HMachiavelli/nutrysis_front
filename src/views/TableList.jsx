@@ -34,7 +34,7 @@ class TableList extends Component {
                         return (
                           <tr key={key}>
                             {prop.map((prop, key) => {
-                              return <td key={key}>{prop}</td>;
+                              return <td style={{textAlign:'left'}} key={key}>{prop}</td>;
                             })}
 
                             <td key="action" width="190">
