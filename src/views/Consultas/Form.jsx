@@ -48,7 +48,7 @@ class Form extends Component {
     this.getAllPacientes();
     this.getAllNutricionistas();
 
-    if (id) {
+    if (id && id !== 'add') {
       this.get(id);
     }
   }
@@ -153,19 +153,18 @@ class Form extends Component {
     }
   }
 
-  handleSend = async () => {
+  handleSend = async evt => {
+    evt.preventDefault();
     this.setState({ loading: true });
 
     try {
       let res;
 
-      if (this.state.consulta) {
+      if (this.state.consulta && this.state.consulta.id && this.state.consulta.id !== '') {
         res = await api.put('/consultings/' + this.state.consulta.id, this.state.consulta);
       } else {
         res = await api.post('/consultings', this.state.consulta);
       }
-
-      console.log(res);
 
       this.setState({ loading: false });
 
@@ -272,7 +271,7 @@ class Form extends Component {
                       ]}
                     />
 
-                    <Button bsStyle="primary" pullRight fill type="submit" onClick={this.handleSend} disabled={this.state.loading}>
+                    <Button bsStyle="primary" pullRight fill type="submit" onClick={evt => this.handleSend(evt)} disabled={this.state.loading}>
                       {this.state.loading ? 'Aguarde...' : 'Salvar'}
                     </Button>
                     <div className="clearfix" />
