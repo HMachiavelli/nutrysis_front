@@ -3,11 +3,7 @@ import Pacientes from "views/Pacientes/Pacientes.jsx";
 import Consultas from "views/Consultas/Consultas.jsx";
 import Exames from "views/Exames/Exames.jsx";
 import Usuarios from "views/Usuarios/Usuarios.jsx";
-
-//exemplos
 import Dashboard from "views/Dashboard.jsx";
-import TableList from "views/TableList.jsx";
-import Typography from "views/Typography.jsx";
 
 const dashboardRoutes = [
   {
