@@ -35,10 +35,11 @@ class Consultas extends Component {
             });
           })();
         } catch (e) {
+          alert('asdsads');
           notify.error('Houve um problema ao conectar!', 'Atenção!');
         }
       }
-    })
+    });
   }
 
   loadData = async () => {

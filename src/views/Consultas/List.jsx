@@ -46,15 +46,18 @@ class Consultas extends Component {
 
     let tdArray = [];
 
-    res.data.map((item) => {
-      tdArray.push([item._id, item.name, item.age]);
+    const list = res.data.map(async item => {
+      const patient = await api.get('/users/' + item.patientId);
+
+      let date = new Date(item.date.split('T')[0]);
+      tdArray.push([item._id, patient.data.name, date.toLocaleDateString('pt-BR')]);
     });
 
-    this.setState({ list: tdArray });
+    Promise.all(list).then(() => this.setState({ list: tdArray }));
   }
 
   async componentDidMount() {
-    const thArray = ["Id", "Nome", "Idade", "Ações"];
+    const thArray = ["Id", "Paciente", "Data", "Ações"];
 
     this.loadData();
 
