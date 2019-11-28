@@ -57,7 +57,8 @@ class Form extends Component {
     }
   }
 
-  handleSend = async () => {
+  handleSend = async env => {
+    env.preventDefault();
     this.setState({ loading: true });
 
     try {
@@ -166,7 +167,7 @@ class Form extends Component {
                       </Col>
                     </Row>
 
-                    <Button bsStyle="primary" pullRight fill type="submit" onClick={this.handleSend} disabled={this.state.loading}>
+                    <Button bsStyle="primary" pullRight fill type="submit" onClick={env => this.handleSend(env)} disabled={this.state.loading}>
                       {this.state.loading ? 'Aguarde...' : 'Salvar'}
                     </Button>
                     <div className="clearfix" />

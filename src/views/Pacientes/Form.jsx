@@ -13,7 +13,7 @@ import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
-import avatar from "assets/img/faces/face-3.jpg";
+import avatar from "assets/img/faces/face-0.jpg";
 
 import api from '../../services/api';
 import notify from '../../services/notify';
@@ -57,7 +57,8 @@ class Form extends Component {
     }
   }
 
-  handleSend = async () => {
+  handleSend = async evt => {
+    evt.preventDefault();
     this.setState({ loading: true });
 
     try {
@@ -166,7 +167,7 @@ class Form extends Component {
                       </Col>
                     </Row>
 
-                    <Button bsStyle="primary" pullRight fill type="submit" onClick={this.handleSend} disabled={this.state.loading}>
+                    <Button bsStyle="primary" pullRight fill type="submit" onClick={evt => this.handleSend(evt)} disabled={this.state.loading}>
                       {this.state.loading ? 'Aguarde...' : 'Salvar'}
                     </Button>
                     <div className="clearfix" />
@@ -176,7 +177,7 @@ class Form extends Component {
             </Col>
             <Col md={4}>
               <UserCard
-                bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
+                bgImage="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTqPL0P2ZzX1oynKmDgwP-l62k96xHNhAYCpWuu41bZKUlU1Hia"
                 avatar={avatar}
                 name={name}
                 userName={email}
