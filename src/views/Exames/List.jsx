@@ -5,6 +5,7 @@ import TableList from "../TableList.jsx";
 import Swal from 'sweetalert2';
 
 import api from "../../services/api";
+import notify from "../../services/notify";
 
 class Consultas extends Component {
   state = {
@@ -34,7 +35,7 @@ class Consultas extends Component {
             });
           })();
         } catch (e) {
-          console.log(e.response);
+          notify.error('Houve um problema ao conectar!', 'Atenção!');
         }
       }
     })

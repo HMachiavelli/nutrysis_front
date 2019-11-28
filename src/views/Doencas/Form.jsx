@@ -13,6 +13,7 @@ import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
 import api from '../../services/api';
+import notify from '../../services/notify';
 
 class Form extends Component {
   state = {
@@ -64,7 +65,7 @@ class Form extends Component {
       this.setState({loading: false});
       window.location.href = '/admin/doencas';
     } catch(error) {
-      console.log(error.response);
+      notify.error('Houve um problema ao cadastrar', 'Atenção!');
       this.setState({loading: false});
     }
   }

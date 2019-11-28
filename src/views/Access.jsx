@@ -11,6 +11,7 @@ import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
 import api from '../services/api';
+import notify from '../services/notify';
 import session from '../services/session';
 
 class Access extends Component {
@@ -34,10 +35,11 @@ class Access extends Component {
       session.save('user', user);
 
       this.setState({ loading: false });
-
+      
       window.location.href = '/';
     } catch(error) {
-      this.setState({ loading: false, error: error.response.data });
+      this.setState({ loading: false });
+      notify.error('Houve um problema ao conectar!', 'Atenção!');
     }
   };
 

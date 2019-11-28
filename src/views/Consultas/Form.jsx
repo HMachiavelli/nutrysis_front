@@ -16,6 +16,7 @@ import Button from "components/CustomButton/CustomButton.jsx";
 import avatar from "assets/img/faces/face-3.jpg";
 
 import api from '../../services/api';
+import notify from "../../services/notify";
 
 class Form extends Component {
   state = {
@@ -169,7 +170,7 @@ class Form extends Component {
 
       window.location.href = '/admin/consultas';
     } catch (error) {
-      console.log(error.response);
+      notify.error('Houve um problema ao cadastrar', 'Atenção!');
       this.setState({ loading: false });
     }
   }
