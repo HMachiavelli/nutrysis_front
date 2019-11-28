@@ -24,7 +24,6 @@ class AdminNavbarLinks extends Component {
             <MenuItem eventKey={2.1} href={"/admin/usuarios/edit/" + session.load('user')['_id']}>
               Meu cadastro
             </MenuItem>
-            <MenuItem eventKey={2.2}>Mensagens</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={2.5} onClick={this.logout}>Sair</MenuItem>
           </NavDropdown>
